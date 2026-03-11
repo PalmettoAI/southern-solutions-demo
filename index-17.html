@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Southern Solutions Heating & Air — Lexington, SC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --clay: #b84c2a;
+    --clay-deep: #8f3318;
+    --clay-light: #d4663c;
+    --clay-pale: #fdf0ea;
+    --charcoal: #1e1e1e;
+    --charcoal-mid: #2e2e2e;
+    --charcoal-soft: #3e3e3e;
+    --cream: #faf7f2;
+    --cream-dark: #f2ece2;
+    --sand: #e8dfd0;
+    --white: #ffffff;
+    --text: #1e1a16;
+    --text-mid: #5a5248;
+    --text-light: #9a9088;
+    --rule: #ddd5c8;
+    --rule-clay: rgba(184,76,42,0.2);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Instrument Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* DEMO BANNER */
+  .demo-banner {
+    background: var(--clay); color: var(--white); text-align: center; padding: 10px 20px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    position: sticky; top: 0; z-index: 9999;
+  }
+  .demo-banner a { color: var(--cream); text-decoration: underline; }
+
+  /* NAV */
+  nav {
+    background: var(--charcoal); padding: 0 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px; position: sticky; top: 37px; z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700;
+    color: var(--white); line-height: 1.2;
+  }
+  .nav-logo span { display: block; font-size: 0.65rem; font-weight: 400; font-family: 'Instrument Sans', sans-serif; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.55); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--clay-light); }
+  .nav-emergency {
+    background: var(--clay); color: var(--white); padding: 10px 22px;
+    font-size: 0.75rem; font-weight: 700; text-decoration: none; letter-spacing: 0.06em;
+    text-transform: uppercase; border-radius: 4px; transition: background 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .nav-emergency:hover { background: var(--clay-light); }
+  .emergency-dot { width: 7px; height: 7px; background: #fff; border-radius: 50%; animation: blink 1.4s infinite; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--charcoal); min-height: 92vh;
+    display: grid; grid-template-columns: 1fr 440px;
+    position: relative; overflow: hidden;
+  }
+
+  /* Subtle texture */
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* Clay glow */
+  .hero::after {
+    content: ''; position: absolute; top: -100px; left: 30%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(184,76,42,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    padding: 100px 80px; display: flex; flex-direction: column;
+    justify-content: center; position: relative; z-index: 1;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  /* Emergency bar */
+  .emergency-bar {
+    display: inline-flex; align-items: center; gap: 10px; background: var(--clay);
+    color: var(--white); padding: 8px 18px; border-radius: 4px; margin-bottom: 36px;
+    width: fit-content;
+  }
+  .emergency-bar .dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: blink 1.4s infinite; }
+  .emergency-bar span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    font-weight: 900; line-height: 1.0; color: var(--white);
+    margin-bottom: 0; letter-spacing: -0.02em;
+  }
+  .hero h1 em { font-style: italic; color: var(--clay-light); font-weight: 700; }
+  .hero h1 .cream { color: var(--cream-dark); }
+
+  .hero-rule { display: flex; align-items: center; gap: 16px; margin: 32px 0; }
+  .hero-rule::before { content: ''; width: 48px; height: 2px; background: var(--clay); }
+  .hero-rule::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08); max-width: 200px; }
+
+  .hero-sub {
+    font-size: 1rem; color: rgba(255,255,255,0.55); line-height: 1.85;
+    max-width: 480px; margin-bottom: 48px; font-weight: 400;
+  }
+
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-clay {
+    background: var(--clay); color: var(--white); padding: 16px 34px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 700; text-decoration: none; letter-spacing: 0.05em;
+    transition: background 0.2s, transform 0.2s; display: inline-block;
+  }
+  .btn-clay:hover { background: var(--clay-light); transform: translateY(-2px); }
+  .btn-outline-white {
+    background: transparent; color: rgba(255,255,255,0.75); padding: 16px 34px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 700; text-decoration: none; letter-spacing: 0.05em;
+    border: 1px solid rgba(255,255,255,0.18); transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline-white:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+
+  .hero-badges {
+    display: flex; gap: 24px; margin-top: 60px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .badge-icon { font-size: 1.4rem; }
+  .badge-text .top { font-size: 0.75rem; font-weight: 700; color: var(--white); }
+  .badge-text .bot { font-size: 0.65rem; color: rgba(255,255,255,0.35); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* HERO RIGHT — FORM */
+  .hero-right {
+    background: var(--cream); display: flex; flex-direction: column;
+    justify-content: center; padding: 72px 52px;
+    border-left: 4px solid var(--clay);
+    animation: slideIn 0.8s ease 0.3s both;
+    position: relative; z-index: 1;
+  }
+
+  .form-top { margin-bottom: 24px; }
+  .form-kicker { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay); margin-bottom: 8px; }
+  .form-top h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: var(--charcoal); line-height: 1.25; margin-bottom: 5px; }
+  .form-top p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.55; }
+  .form-sep { height: 1px; background: var(--rule); margin: 20px 0; }
+
+  .fg { margin-bottom: 14px; }
+  .fg label { display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
+  .fg input, .fg select, .fg textarea {
+    width: 100%; padding: 12px 16px; border: 1.5px solid var(--sand); border-radius: 6px;
+    background: var(--white); font-family: 'Instrument Sans', sans-serif;
+    font-size: 0.88rem; color: var(--text); outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--clay); }
+  .fg textarea { resize: none; height: 76px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .btn-submit {
+    width: 100%; background: var(--clay); color: var(--white); border: none;
+    padding: 15px; border-radius: 4px; font-family: 'Instrument Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer; margin-top: 6px; transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--clay-light); }
+  .form-note { font-size: 0.68rem; color: var(--text-light); text-align: center; margin-top: 12px; }
+
+  .confirm-box { display: none; text-align: center; padding: 36px 0; }
+  .confirm-box .icon { font-size: 3rem; margin-bottom: 14px; }
+  .confirm-box h4 { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 700; color: var(--clay-deep); margin-bottom: 8px; }
+  .confirm-box p { font-size: 0.85rem; color: var(--text-mid); line-height: 1.65; }
+
+  /* ── SERVICES ── */
+  .services { background: var(--cream); padding: 110px 80px; }
+  .sec-kicker { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--clay); margin-bottom: 12px; }
+  .sec-title { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; color: var(--charcoal); line-height: 1.1; margin-bottom: 14px; }
+  .sec-title em { font-style: italic; color: var(--clay); }
+  .sec-sub { font-size: 0.95rem; color: var(--text-mid); max-width: 520px; line-height: 1.8; margin-bottom: 64px; font-weight: 400; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .svc {
+    background: var(--white); border-radius: 12px; padding: 36px 30px;
+    border: 1.5px solid var(--sand); position: relative; overflow: hidden;
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.3s, border-color 0.3s;
+  }
+  .svc.visible { opacity: 1; transform: translateY(0); }
+  .svc:hover { box-shadow: 0 16px 48px rgba(184,76,42,0.1); border-color: var(--clay-light); }
+  .svc-stripe {
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--clay) 0%, var(--clay-light) 100%);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+  }
+  .svc:hover .svc-stripe { transform: scaleX(1); }
+  .svc-icon { font-size: 2.2rem; margin-bottom: 20px; display: block; }
+  .svc h4 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--charcoal); margin-bottom: 10px; }
+  .svc p { font-size: 0.83rem; color: var(--text-mid); line-height: 1.75; }
+
+  /* ── RESPONSE STRIP ── */
+  .response-strip {
+    background: var(--clay-deep); padding: 80px;
+    display: grid; grid-template-columns: 3fr 2fr; gap: 80px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .response-strip::before {
+    content: '5'; font-family: 'Fraunces', serif; font-size: 40rem; font-weight: 900;
+    font-style: italic; color: rgba(255,255,255,0.03); position: absolute;
+    right: -40px; top: 50%; transform: translateY(-50%); line-height: 1; pointer-events: none;
+  }
+  .rs-left { position: relative; z-index: 1; }
+  .rs-left .sec-kicker { color: var(--clay-light); }
+  .rs-left h2 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 18px; }
+  .rs-left h2 em { font-style: italic; color: var(--clay-light); }
+  .rs-left p { font-size: 0.92rem; color: rgba(255,255,255,0.55); line-height: 1.85; font-weight: 400; }
+
+  .rs-right { display: flex; flex-direction: column; gap: 14px; position: relative; z-index: 1; }
+  .rs-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-left: 3px solid var(--clay-light); border-radius: 6px; padding: 22px 24px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .rs-card .big { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 900; font-style: italic; color: var(--clay-light); line-height: 1; white-space: nowrap; }
+  .rs-card .label { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* ── WHY US ── */
+  .why { background: var(--cream-dark); padding: 110px 80px; border-top: 1px solid var(--rule); }
+  .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+
+  .why-left .sec-title { margin-bottom: 20px; }
+  .why-left p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 14px; }
+  .why-left a {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--charcoal);
+    color: var(--white); padding: 14px 28px; border-radius: 4px; font-size: 0.82rem;
+    font-weight: 700; letter-spacing: 0.05em; text-decoration: none; margin-top: 20px;
+    transition: background 0.2s;
+  }
+  .why-left a:hover { background: var(--charcoal-soft); }
+  .why-left a::after { content: '→'; }
+
+  .why-items { display: flex; flex-direction: column; gap: 0; }
+  .why-item {
+    display: grid; grid-template-columns: 48px 1fr; gap: 20px; padding: 28px 0;
+    border-bottom: 1px solid var(--rule); align-items: flex-start;
+    opacity: 0; transform: translateX(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .why-item.visible { opacity: 1; transform: translateX(0); }
+  .why-num {
+    width: 48px; height: 48px; background: var(--clay-pale); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--clay); flex-shrink: 0;
+  }
+  .why-item h5 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--charcoal); margin-bottom: 5px; }
+  .why-item p { font-size: 0.82rem; color: var(--text-mid); line-height: 1.65; }
+
+  /* ── REVIEWS ── */
+  .reviews { background: var(--white); padding: 100px 80px; }
+  .reviews-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+  .reviews-header h2 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 900; color: var(--charcoal); line-height: 1.1; }
+  .reviews-header h2 em { font-style: italic; color: var(--clay); }
+  .rating-badge { text-align: right; }
+  .rating-badge .stars { color: #f4b942; font-size: 1.3rem; letter-spacing: 3px; }
+  .rating-badge .count { font-size: 0.72rem; color: var(--text-light); margin-top: 4px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .rv {
+    background: var(--cream); border-radius: 12px; padding: 32px 28px;
+    border: 1.5px solid var(--sand);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .rv.visible { opacity: 1; transform: translateY(0); }
+  .rv-stars { color: #f4b942; font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 14px; }
+  .rv-text { font-size: 0.88rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 20px; font-style: italic; }
+  .rv-author { font-size: 0.72rem; font-weight: 700; color: var(--text); letter-spacing: 0.04em; }
+  .rv-tag { display: inline-block; background: var(--clay-pale); color: var(--clay); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 14px; }
+
+  /* ── SERVICE AREA ── */
+  .service-area {
+    background: var(--charcoal); padding: 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .sa-left .sec-kicker { color: var(--clay-light); }
+  .sa-left h2 { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 16px; }
+  .sa-left h2 em { font-style: italic; color: var(--clay-light); }
+  .sa-left p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.8; }
+  .area-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+  .area-chip {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7); padding: 8px 16px; border-radius: 100px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .area-chip:hover { background: var(--clay); border-color: var(--clay); color: var(--white); }
+
+  .sa-right { display: flex; flex-direction: column; gap: 14px; }
+  .sa-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 22px 24px; display: flex; gap: 16px; align-items: flex-start;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .sa-card.visible { opacity: 1; transform: translateY(0); }
+  .sa-card-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .sa-card h5 { font-size: 0.88rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .sa-card p { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: var(--clay-pale); padding: 100px 80px; text-align: center;
+    border-top: 1px solid var(--rule-clay);
+  }
+  .final-cta h2 { font-family: 'Fraunces', serif; font-size: clamp(2.4rem, 4.5vw, 4rem); font-weight: 900; color: var(--charcoal); line-height: 1.05; margin-bottom: 18px; }
+  .final-cta h2 em { font-style: italic; color: var(--clay); }
+  .final-cta p { font-size: 0.95rem; color: var(--text-mid); max-width: 480px; margin: 0 auto 48px; line-height: 1.8; }
+  .cta-pair { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-outline-clay {
+    background: transparent; color: var(--clay); padding: 16px 36px; border-radius: 4px;
+    font-size: 0.85rem; font-weight: 700; text-decoration: none; letter-spacing: 0.05em;
+    border: 2px solid var(--clay); transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline-clay:hover { background: var(--clay); color: var(--white); }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); padding: 60px 80px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; border-top: 3px solid var(--clay); }
+  .f-logo { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 14px; line-height: 1.2; }
+  .f-logo span { display: block; font-size: 0.6rem; font-family: 'Instrument Sans', sans-serif; color: rgba(255,255,255,0.3); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 3px; }
+  footer p, footer a { font-size: 0.8rem; color: rgba(255,255,255,0.45); text-decoration: none; line-height: 2.1; display: block; }
+  footer a:hover { color: var(--clay-light); }
+  footer h5 { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--clay-light); margin-bottom: 14px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  @media (max-width: 1000px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 80px 30px; }
+    .hero-right { padding: 40px 30px; border-left: none; border-top: 4px solid var(--clay); }
+    .services { padding: 60px 30px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .response-strip { grid-template-columns: 1fr; padding: 60px 30px; gap: 40px; }
+    .why { padding: 60px 30px; }
+    .why-inner { grid-template-columns: 1fr; gap: 40px; }
+    .reviews { padding: 60px 30px; }
+    .reviews-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .service-area { grid-template-columns: 1fr; padding: 60px 30px; gap: 40px; }
+    .final-cta { padding: 60px 30px; }
+    footer { grid-template-columns: 1fr; padding: 40px 30px; gap: 28px; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  🤖 PalmettoAI Demo — Built for Southern Solutions Heating & Air &nbsp;·&nbsp; <a href="mailto:tony@palmettoai.com">tony@palmettoai.com</a>
+</div>
+
+<nav>
+  <div class="nav-logo">Southern Solutions<span>Heating & Air · Lexington, SC</span></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#why">Why Us</a>
+    <a href="#reviews">Reviews</a>
+    <a href="tel:8038462259" class="nav-emergency"><div class="emergency-dot"></div> 24/7 Emergency</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="emergency-bar"><div class="dot"></div><span>24/7 Emergency Service Available</span></div>
+    <h1>
+      <span class="cream">Keeping</span><br>
+      Lexington<br>
+      <em>Comfortable.</em>
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Southern Solutions has been the most trusted heating and air name in Lexington County for over a decade. Local techs, honest pricing, and same-day service when your family needs it most.</p>
+    <div class="hero-actions">
+      <a href="#book" class="btn-clay">Get a Free Quote</a>
+      <a href="tel:8038462259" class="btn-outline-white">📞 (803) 846-2259</a>
+    </div>
+    <div class="hero-badges">
+      <div class="badge"><div class="badge-icon">⚡</div><div class="badge-text"><div class="top">Same-Day Service</div><div class="bot">Most Calls</div></div></div>
+      <div class="badge"><div class="badge-icon">🏠</div><div class="badge-text"><div class="top">Locally Owned</div><div class="bot">Lexington, SC</div></div></div>
+      <div class="badge"><div class="badge-icon">✅</div><div class="badge-text"><div class="top">Licensed & Insured</div><div class="bot">SC Certified</div></div></div>
+      <div class="badge"><div class="badge-icon">💬</div><div class="badge-text"><div class="top">5-Min Response</div><div class="bot">New Leads</div></div></div>
+    </div>
+  </div>
+
+  <div class="hero-right" id="book">
+    <div class="form-top">
+      <div class="form-kicker">Free Estimate</div>
+      <h3>Request a Quote or Service Call</h3>
+      <p>We respond within 5 minutes during business hours. After hours, we call back first thing.</p>
+    </div>
+    <div class="form-sep"></div>
+
+    <div id="bookForm">
+      <div class="form-row">
+        <div class="fg"><label>First Name</label><input type="text" placeholder="First"></div>
+        <div class="fg"><label>Last Name</label><input type="text" placeholder="Last"></div>
+      </div>
+      <div class="fg"><label>Phone Number</label><input type="tel" placeholder="(803) 555-0100"></div>
+      <div class="fg">
+        <label>I Need Help With</label>
+        <select>
+          <option>AC Not Cooling</option>
+          <option>Heat Not Working</option>
+          <option>New System Installation</option>
+          <option>Annual Maintenance / Tune-Up</option>
+          <option>Emergency Service</option>
+          <option>Ductwork / Air Quality</option>
+          <option>Free Second Opinion</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Any Details? (Optional)</label>
+        <textarea placeholder="e.g. unit is making a noise, stopped cooling yesterday, 3-year-old Carrier system..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">Send My Request — Call Me Today →</button>
+      <div class="form-note">🔒 No spam. We call — we don't sell your info.</div>
+    </div>
+
+    <div class="confirm-box" id="confirmBox">
+      <div class="icon">✅</div>
+      <h4>Got it — we'll call you shortly.</h4>
+      <p>Expect a call within 5 minutes. For urgent issues, call us directly at (803) 846-2259.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-kicker">Full HVAC Services</div>
+  <h2 class="sec-title">Everything Your Home <em>Needs</em></h2>
+  <p class="sec-sub">From emergency repairs to full system replacements, Southern Solutions handles it all — one call, one truck, one honest price. No subcontractors, no surprises.</p>
+
+  <div class="services-grid">
+    <div class="svc">
+      <div class="svc-stripe"></div>
+      <span class="svc-icon">❄️</span>
+      <h4>AC Repair & Service</h4>
+      <p>Not cooling? Making a noise? Leaking? We diagnose fast and fix it right the first time — with upfront pricing before any work starts.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-stripe"></div>
+      <span class="svc-icon">🔥</span>
+      <h4>Heating Repair</h4>
+      <p>No heat in December won't wait. Same-day emergency heating service for all major brands. We carry most parts on the truck so you're warm by tonight.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-stripe"></div>
+      <span class="svc-icon">🏗️</span>
+      <h4>New System Installation</h4>
+      <p>Old system finally giving up? We install all major brands with a 10-year parts warranty and a 2-year labor guarantee. No pressure — just honest recommendations.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-stripe"></div>
+      <span class="svc-icon">🔧</span>
+      <h4>Preventive Maintenance</h4>
+      <p>Annual tune-ups that catch small problems before they become $4,000 replacements. Our maintenance members get priority scheduling and member-only pricing.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-stripe"></div>
+      <span class="svc-icon">💨</span>
+      <h4>Air Quality & Ductwork</h4>
+      <p>Allergies? Musty smell? Uneven temps room to room? We inspect ductwork, seal leaks, and install air purifiers that make a real difference in your home.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-stripe"></div>
+      <span class="svc-icon">🌡️</span>
+      <h4>Smart Thermostat Setup</h4>
+      <p>Upgrade to a Nest or Ecobee and cut your energy bill by up to 23%. We handle the full install, setup, and connection to your phone in under an hour.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESPONSE STRIP -->
+<section class="response-strip">
+  <div class="rs-left">
+    <div class="sec-kicker">Our Response Promise</div>
+    <h2>You call. We<br><em>answer.</em></h2>
+    <p>Every new service request gets an automatic text confirmation and a call from our dispatch within 5 minutes. When your AC goes out in July, you don't have time to wait on hold or leave a voicemail. Neither do we — so we built a system that makes sure you never have to.</p>
+  </div>
+  <div class="rs-right">
+    <div class="rs-card"><div class="big">&lt;5m</div><div class="label">Response to Every New Request</div></div>
+    <div class="rs-card"><div class="big">Same Day</div><div class="label">Service on Most Calls</div></div>
+    <div class="rs-card"><div class="big">24/7</div><div class="label">Emergency Line Always Open</div></div>
+    <div class="rs-card"><div class="big">100%</div><div class="label">Upfront Pricing Before Work Starts</div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="why-left">
+      <div class="sec-kicker">Why Southern Solutions</div>
+      <h2 class="sec-title">Your neighbor. <em>Your tech.</em></h2>
+      <p>We're not a franchise. We're not a call center. We're a Lexington County company staffed by Lexington County technicians who live in the same neighborhoods you do — and care about their reputation.</p>
+      <p>That means you get honest service, fair prices, and a tech who shows up on time and actually explains what's wrong with your system before charging you a dime.</p>
+      <a href="#book">Get a Free Quote</a>
+    </div>
+    <div class="why-items">
+      <div class="why-item">
+        <div class="why-num">1</div>
+        <div><h5>5-Minute Lead Response</h5><p>The moment you submit a request, our system sends your info directly to dispatch. A real person calls you within 5 minutes — not 5 hours.</p></div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">2</div>
+        <div><h5>Automated Maintenance Reminders</h5><p>Maintenance members receive automatic seasonal tune-up reminders, filter replacement alerts, and priority scheduling — zero effort on your end.</p></div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">3</div>
+        <div><h5>Upfront Pricing — Always</h5><p>We tell you the full cost before any work begins. No surprise invoices. No add-on fees. What we quote is what you pay.</p></div>
+      </div>
+      <div class="why-item">
+        <div class="why-num">4</div>
+        <div><h5>Local & Accountable</h5><p>We live here. Our reputation is everything — and every technician knows their name is on every job they complete in this community.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-header">
+    <h2>What Lexington<br>Homeowners <em>Say</em></h2>
+    <div class="rating-badge">
+      <div class="stars">★★★★★</div>
+      <div class="count">5.0 · Google Reviews</div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="rv">
+      <div class="rv-tag">AC Repair</div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-text">"AC went out on a Saturday afternoon in August. Called Southern Solutions and they were at my house within 2 hours. Fixed it same day, price was exactly what they quoted. These guys are the real deal."</div>
+      <div class="rv-author">— Chris D., Lexington SC</div>
+    </div>
+    <div class="rv">
+      <div class="rv-tag">New Installation</div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-text">"Got three quotes for a new unit. Southern Solutions was the most honest — they told me I didn't need the most expensive system and saved me $2,000. Installed in one day. I tell everyone I know about them."</div>
+      <div class="rv-author">— Patricia H., Chapin SC</div>
+    </div>
+    <div class="rv">
+      <div class="rv-tag">Maintenance Plan</div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-text">"Love the maintenance plan. They text me when it's time for a tune-up, show up on time, and my energy bill dropped noticeably. Haven't had an emergency repair in 3 years since I signed up."</div>
+      <div class="rv-author">— Robert M., Gilbert SC</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="service-area">
+  <div class="sa-left">
+    <div class="sec-kicker">Where We Work</div>
+    <h2>Proudly Serving <em>All of Lexington County</em></h2>
+    <p>If you're in the Midlands, we've got you covered. Our trucks are stationed locally so we're never more than 30 minutes away from any call.</p>
+    <div class="area-chips">
+      <div class="area-chip">📍 Lexington</div>
+      <div class="area-chip">📍 Irmo</div>
+      <div class="area-chip">📍 Chapin</div>
+      <div class="area-chip">📍 Gilbert</div>
+      <div class="area-chip">📍 Cayce</div>
+      <div class="area-chip">📍 West Columbia</div>
+      <div class="area-chip">📍 Batesburg</div>
+      <div class="area-chip">📍 Lake Murray</div>
+    </div>
+  </div>
+  <div class="sa-right">
+    <div class="sa-card">
+      <div class="sa-card-icon">🚐</div>
+      <div><h5>Trucks Stationed Locally</h5><p>No driving from Columbia or Charlotte. Our techs live here and launch from Lexington County every morning.</p></div>
+    </div>
+    <div class="sa-card">
+      <div class="sa-card-icon">⏱️</div>
+      <div><h5>30-Minute Average Arrival</h5><p>Most calls in Lexington County get a tech on-site in under 30 minutes. Emergency calls jump the queue automatically.</p></div>
+    </div>
+    <div class="sa-card">
+      <div class="sa-card-icon">📦</div>
+      <div><h5>Fully Stocked Trucks</h5><p>We carry parts for all major brands — Carrier, Lennox, Trane, Rheem, and more. Most repairs happen on the first visit.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2>Don't sweat it.<br><em>Call Southern Solutions.</em></h2>
+  <p>Free estimates. Honest pricing. Same-day service on most calls. Lexington's most trusted HVAC company is just one click away.</p>
+  <div class="cta-pair">
+    <a href="#book" class="btn-clay">Get a Free Quote</a>
+    <a href="tel:8038462259" class="btn-outline-clay">📞 (803) 846-2259</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="f-logo">Southern Solutions Heating & Air<span>Lexington, South Carolina</span></div>
+    <p>📞 (803) 846-2259</p>
+    <p>✉ info@southernsolutionsheatingandair.com</p>
+    <p>24/7 Emergency Line Available</p>
+  </div>
+  <div>
+    <h5>Hours</h5>
+    <p>Mon–Fri: 7am–7pm</p>
+    <p>Saturday: 8am–5pm</p>
+    <p>Emergency: 24/7</p>
+  </div>
+  <div>
+    <h5>Services</h5>
+    <a href="#services">AC Repair</a>
+    <a href="#services">Heating Repair</a>
+    <a href="#services">New Installations</a>
+    <a href="#services">Maintenance Plans</a>
+    <a href="#services">Air Quality</a>
+  </div>
+</footer>
+
+<script>
+  function submitForm() {
+    document.getElementById('bookForm').style.display = 'none';
+    document.getElementById('confirmBox').style.display = 'block';
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 110);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.svc, .why-item, .rv, .sa-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
